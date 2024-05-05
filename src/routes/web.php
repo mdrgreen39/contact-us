@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,13 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin', [ContactController::class, 'admin']);
+// Route::get('/admin', function()
+// {
+//     return view('admin');
+// });
+
+Route::group(['middleware' => ['auth']], function ()
+{
+    Route::get('/admin', [ContactController::class, 'index'])->name('admin');
 });
+

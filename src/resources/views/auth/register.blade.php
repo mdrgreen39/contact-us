@@ -1,16 +1,34 @@
-@extends('layouts/app')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/register.css') }}" />
 @endsection
 
+@section('form')
+<form class="header__button" action="{{ route('login') }}" method="post">
+    @csrf
+    <button class="header__button-submit">
+        login
+    </button>
+</form>
+@endsection
+
 @section('content')
 
+@guest
+<form class="header__button" action="/login" method="get">
+    @csrf
+    <button class="header__button-submit">
+        login
+    </button>
+</form>
+@endguest
+
 <div class="register__content">
-    <h2 class="register-form__heading">
+    <h2 class="register__heading">
         Register
     </h2>
-    <form class="signup-form" action="/register" method="post">
+    <form class="signup-form" action="{{ route('register') }}" method="post">
         @csrf
         <div class="signup-form__group">
             <div class="signup-form__group-title">
@@ -57,18 +75,18 @@
                 @enderror
             </div>
         </div>
-        <div class="signup-form__group">
+        <!--<div class="signup-form__group">
             <div class="signup-form-title">
                 <span class="signup-form__label--item">確認用パスワード</span>
             </div>
             <div class="signup-form__group-content">
                 <div class="signup-form__input--text">
-                    <input type="password" name="password_confirmation" placeholder="coachtech1106"/>
+                    <input type="password" name="password_confirmation" placeholder="coachtech1106" />
                 </div>
-            </div>
-        </div>
-        <div class="signup-form__button">
-            <button class="signup-form__button-submit" type="submit">登録</button>
-        </div>
-    </form>
+            </div>-->
+</div>
+<div class="signup-form__button">
+    <button class="signup-form__button-submit" type="submit">登録</button>
+</div>
+</form>
 </div>
