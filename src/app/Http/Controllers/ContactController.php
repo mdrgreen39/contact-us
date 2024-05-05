@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function admin()
+    public function index()
     {
         return view('admin');
     }
 
+    //public function create()
+    //{
+    //    return view('auth.register');
+    //}
 
 }

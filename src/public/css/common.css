@@ -3,14 +3,36 @@
 }
 
 .header__inner {
+    position: relative;
     margin: 0 auto;
     padding: 20px 15px;
+    border-bottom: 1px solid #e0dfde;
     max-width: 1230px;
 }
 
 .header__logo {
     color: #8b7969;
+    text-align: center;
     font-family: serif;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 36px;
+}
+
+.header__button {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    margin: 30px;
+}
+
+.header__button-submit {
+    padding: 10px;
+    width: 80px;
+    line-height: 10px;
+    border: 1px solid #d9c6b5;
+    background: #f6f6f6;
+    color: #d9c6b5;
+    font-family: serif;
+    font-size: 18px;
+    cursor: pointer;
 }

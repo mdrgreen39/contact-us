@@ -12,16 +12,19 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\RegisterController;
 
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
+    //public function register(): void
+    //{
         //
-    }
+    //}
 
     /**
      * Bootstrap any application services.
@@ -29,14 +32,15 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);
+
         Fortify::registerView(function ()
         {
-            return view('register');
+            return view('auth.register');
         });
 
         Fortify::loginView(function()
         {
-            return view('login');
+            return view('auth.login');
         });
 
         RateLimiter::for('login', function (Request $request)
@@ -45,8 +49,24 @@ class FortifyServiceProvider extends ServiceProvider
 
             return Limit::perMinute(10)->by($email . $request->ip());
         });
-
-
     }
 
+
+    //ログアウト後ログイン画面へ
+
+    public function register()
+    {
+        $this->app->singleton(
+            RegisteredUserController::class,
+            RegisterController::class);
+
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
+        {
+            public function toResponse($request)
+            {
+                return redirect('/login');
+            }
+        });
+
+    }
 }

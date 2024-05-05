@@ -16,6 +16,7 @@
             <h1 class="header__logo">
                 FashionablyLate
             </h1>
+                @yield('form')
         </div>
     </header>
 
