@@ -15,14 +15,12 @@
             <h1 class="header__logo">
                 FashionablyLate
             </h1>
-            @guest
             <form class="header__button" action="/register" method="get">
                 @csrf
                 <button class="header__button-submit">
                     register
                 </button>
             </form>
-            @endguest
         </div>
     </header>
 
@@ -34,11 +32,15 @@
             <form class="login-form" action="/login" method="post">
                 @csrf
                 <div class="login-form__group">
+                    <div class="login-form__group-box">
+
+
+                    </div>
                     <div class="login-form__group-title">
-                        <span class="login-form__labe--item">メールアドレス</span>
+                        <span class="login-form__label--item">メールアドレス</span>
                     </div>
                     <div class="login-form__group-content">
-                        <div class="login__input--text">
+                        <div class="login-form__input--text">
                             <input type="email" name="email" placeholder="test@example.com" value="{{ old('email') }}" />
                         </div>
                         <div class="login-form__error">
@@ -70,14 +72,6 @@
                 </div>
             </form>
         </div>
-
     </main>
-
-
-
-
-
-
-
-
 </body>
+</html>

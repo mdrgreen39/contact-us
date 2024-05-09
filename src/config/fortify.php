@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Requests\RegisterRequest;
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 
@@ -145,7 +146,9 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        Features::registration([
+            'request' => RegisterRequest::class,
+        ]),
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::updateProfileInformation(),
