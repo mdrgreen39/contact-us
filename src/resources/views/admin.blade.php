@@ -19,16 +19,23 @@
     <h2 class="admin__heading">
         Admin
     </h2>
-    <form class="admin-form" action="" method="">
+    <form class="search-form" action="/admin" method="get">
         @csrf
-        <div class="admin-form__group">
-            <div class="admin-form__input--text">
-                <input type="text" name="input" placeholder="名前やメールアドレスを入力してください" value=" {{ old('input') }}" />
-                <select class="admin-form__select">
-                    <option value="male"></option>
+        <div class="search-form__group">
+            <div class="admin-form__search">
+                <input type="text" name="text" placeholder="お名前やメールアドレスを入力してください" />
+                <select class="search-form__gender--select">
+                    <option value="male">性別</option>
                     <option value="male">男性</option>
                     <option value="male">女性</option>
+                    <option value="male">その他</option>
                 </select>
+                <select class="search-form__category--select" name="category_id">
+                    <option value="category_id">お問い合わせの種類</option>
+                </select>
+                <input class="search-form__date" type="date" name="data" value="" />
+                <div class="search-form__button">
+                    <button class="">検索</button></div>
             </div>
         </div>
     </form>

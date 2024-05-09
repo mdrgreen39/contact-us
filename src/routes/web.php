@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,15 @@ use Illuminate\Support\Facades\Auth;
 //     return view('admin');
 // });
 
+Route::get('/', [ContactController::class, 'index'])->name('index');
+Route::get('/confirm', [ContactController::class,'confirm']);
+Route::post('/confirm', [ContactController::class,'confirm'])->name('confirm');
+Route::post('/thanks', [ContactController::class, 'store']);
+Route::get('/thanks', [ContactController::class, 'show']);
+
+Route::get('/auth/login', [AuthController::class, 'show'])->name('login');
+
 Route::group(['middleware' => ['auth']], function ()
 {
-    Route::get('/admin', [ContactController::class, 'index'])->name('admin');
+    Route::get('/admin', [AuthController::class, 'index'])->name('admin');
 });
-
